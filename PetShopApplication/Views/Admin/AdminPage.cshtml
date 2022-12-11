@@ -1,0 +1,52 @@
+﻿@model IEnumerable<PetShopApplication.Models.Animal>
+
+
+@{
+	ViewData["Title"] = "Admin Page";
+}
+
+<div class="container">
+	<h3 class="text-center">Admin Page</h3>
+<div class=text-left>
+	<div class="dropdown">
+		<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Select a category
+		</button>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			<a class="dropdown-item" asp-controller="Admin" asp-action="AdminPage" asp-route-id="1">Mamal</a>
+			<a class="dropdown-item" asp-controller="Admin" asp-action="AdminPage" asp-route-id="2">Reptile</a>
+			<a class="dropdown-item" asp-controller="Admin" asp-action="AdminPage" asp-route-id="3">Aquatic</a>
+		</div>
+	</div>
+	<br/>
+	<a role="button" class="btn btn-outline-secondary align-items-center" asp-controller="Admin" asp-action="AddAnimal">Add New Animal</a>
+	<br />
+</div>
+</div>
+
+
+
+
+<div class="container">
+	<div class="row">
+
+		@foreach (var animal in Model)
+		{
+
+			<div class="col-md-3 mt-3">
+				<div class="card">
+					<div class="card-body">
+						<img src="@animal.ImageUrl" class="card-img-top img-responsive" width=300 height=300>
+						<h5 class="card-title font-weight-bold  ">Name: @animal.Name</h5>
+						<a role="button" class="btn btn-outline-info" asp-controller="Admin" asp-action="EditAnimal" asp-route-id="@animal.AnimalId">Edit</a>
+						<a role="button" class="btn btn-outline-danger" asp-controller="Admin" asp-action="DeleteAnimal" asp-route-id="@animal.AnimalId">Delete</a>
+					</div>
+				</div>
+			</div>
+		}
+
+
+
+
+	</div>
+</div>

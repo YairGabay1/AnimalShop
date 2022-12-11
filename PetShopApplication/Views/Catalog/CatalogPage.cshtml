@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PetShopApplication.Models.Animal>
+@{
+	ViewData["Title"] = "Catalog page";
+}
+
+<div class="container">
+		
+
+		<h3 class="text-center">Here some of our Animals:</h3>
+
+	<div class="text-left">
+		<form asp-controller="Catalog" asp-action="CatalogPage" method="post">
+			<select name="id">
+				<option value="none" selected disabled hidden>
+					@ViewBag.currentCategory
+				</option>
+				@foreach (var c in ViewBag.Category)
+				{
+					<option value="@c.CategoryId">@c.Name </option>
+				}
+			</select>
+			<button class="btn btn-primary" style="width:100px" type="submit"> submit</button>
+		</form>
+	</div>
+	</div>
+
+<div class="container">
+	<div class="row">
+
+	 @foreach (var animal in Model) 
+   {
+  
+    <div class="col-md-3 mt-3">
+      <div class="card">
+        <div class="card-body">
+           <img src="@animal.ImageUrl"class="card-img-top img-responsive" width=300 height=300>
+           <h5 class="card-title font-weight-bold  ">Name: @animal.Name</h5>
+           <p class="card-text">Age: @animal.Age </p>
+	       <a role="button" class="btn btn-primary" style="width:220px" asp-controller="Catalog" asp-action="DetailPage" asp-route-id="@animal.AnimalId">Show Details</a>
+        </div>
+      </div>
+    </div>
+    }
+	
+
+
+
+</div>
+</div>
